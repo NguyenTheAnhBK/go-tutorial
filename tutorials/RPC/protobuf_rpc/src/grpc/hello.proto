@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+// tên package được sinh ra
+package hello;
+option go_package = "/hello";
+
+// message là 1 đơn vị dữ liệu trong protobuf
+message String {
+    //chuỗi string được truyền vào hàm RPC
+    string value = 1;
+}
+
+//định nghĩa service
+service HelloService{
+    //định nghĩa lời gọi hàm RPC
+    rpc Hello (String) returns (String);
+}
+
+//Tạo protobuf gen go
+//protoc --go_out=. hello.proto
+
+//Tạo gRPC code
+//protoc --go_out=plugins=grpc:. hello.proto
